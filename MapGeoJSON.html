@@ -22,6 +22,11 @@ crossorigin=""></script>
 #mapid { height: 180px; }
 </style>
 
+<!-- the following links incorporate the CSS required for custom icon creation -->
+<link rel="stylesheet" href="ionicons.min.css">
+<link rel="stylesheet" href="leaflet.awesome-markers.css">
+<script src="leaflet.awesome-markers.js"></script>
+
 </head>
 
 
@@ -72,7 +77,7 @@ var geojsonFeature = {
 };
 
 // and add the geoJSON feature to the map
-L.geoJSON(geojsonFeature).addTo(mymap).bindPopup("<b> "+geojsonFeature.properties.name+" "+geojsonFeature.properties.popupContent+" <b>");
+// L.geoJSON(geojsonFeature).addTo(mymap).bindPopup("<b> "+geojsonFeature.properties.name+" "+geojsonFeature.properties.popupContent+" <b>");
 
 // create a custom popup
 var popup = L.popup();
@@ -92,6 +97,19 @@ function onMapClick(e) {
 // now add the click event detector to the map
 mymap.on('click', onMapClick);
 
+// create the custom Marker icon
+var testMarkerPink = L.AwesomeMarkers.icon({
+icon: 'play',
+markerColor: 'pink'
+});
+
+// Modify GeoJSON feature for UCL makes use of the new icon
+L.geoJSON(geojsonFeature, {
+							pointToLayer: 
+								function (feature, latlng) {
+									return L.marker(latlng, {icon:testMarkerPink});
+									}
+							}).addTo(mymap).bindPopup("<b> "+geojsonFeature.properties.name+" "+geojsonFeature.properties.popupContent+" <b>");
 </script>
 </body>
 </html>

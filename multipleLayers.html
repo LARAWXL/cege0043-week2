@@ -34,6 +34,10 @@
         // all the functions can use the same variable
         var client;
 
+        // and a variable that will hold the layer itself
+        // we need to do this outside the function so that we
+        // can use it to remove the layer later on
+        var earthquakelayer;
 
         // run the function when you click the LOAD DATA BUTTON
         function loadEarthquakeData() {
@@ -78,7 +82,8 @@
 
         // run the function when you click the REMOVE DATA BUTTON
         function removeEarthquakeData() {
-            alert("remove the earthquake data here");
+            alert("Earthquake data will be removed");
+            mymap.removeLayer( earthquakelayer );
         }
     </script>
 

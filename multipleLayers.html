@@ -35,7 +35,7 @@
         var client;
 
 
-        // run the function when you click the button
+        // run the function when you click the LOAD DATA BUTTON
         function loadEarthquakeData() {
             // call the getEarthquakes code
             // keep the alert message so that we know something is happening
@@ -45,7 +45,7 @@
 
 
         // get the Earthquakes data using an XMLHttpRequest
-        function getEarthquakes(){
+        function getEarthquakes() {
             client = new XMLHttpRequest();
             client.open('GET', 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson');
             client.onreadystatechange = earthquakeResponse;
@@ -75,7 +75,14 @@
             // change the map zoom so that all the data is shown
             mymap.fitBounds(earthquakelayer.getBounds());
         }
+
+        // run the function when you click the REMOVE DATA BUTTON
+        function removeEarthquakeData() {
+            alert("remove the earthquake data here");
+        }
     </script>
+
+
 </head>
 
 
@@ -90,7 +97,9 @@ This is my first HTML Page
 
 
 <!-- a button to remove the data  -->
-<button id="removeEarthquakeData" name="removeEarthquakeData" onclick="removeEarthquakeData()">Click here to remove the Earthquake data </button>
+<button id="removeEarthquakeData" name="removeEarthquakeData" onclick="removeEarthquakeData()">Click here to remove the
+    Earthquake data
+</button>
 
 
 <!-- the following script will load the map and set the default view and zoom, as well as loading the

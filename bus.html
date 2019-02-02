@@ -102,13 +102,27 @@
             // convert the text to JSON
             var json = JSON.parse(geoJSONData);
 
-            // add the JSON layer onto the map - it will appear using the default icons
+            // add the JSON layer onto the map
             if (loadingEarthquakes === true) {
-                earthquakelayer = L.geoJson(json).addTo(mymap);
+                earthquakelayer = L.geoJson(json,
+                    // use cutomer icon Pink for earthquake data
+                {
+                    pointToLayer: function (feature, latlng) {
+                        return L.marker(latlng, {icon: testMarkerPink});
+                    }
+                }).addTo(mymap);
                 mymap.fitBounds(earthquakelayer.getBounds());
             }
+
+
             if (loadingBusstops === true) {
-                busstoplayer = L.geoJson(json).addTo(mymap);
+                busstoplayer = L.geoJson(json,
+                // use cutomer icon Red for bus stop data
+                    {
+                        pointToLayer: function (feature, latlng) {
+                            return L.marker(latlng, {icon: testMarkerRed});
+                        }
+                    }).addTo(mymap);
                 mymap.fitBounds(busstoplayer.getBounds());
             }
         }
